@@ -2,6 +2,7 @@ div {
     border: 1px solid black;
     text-align: center;
     min-height: 30px;    
+    box-sizing:border-box;
 }
 
 .clear {
@@ -15,7 +16,7 @@ div {
 
 .question .ans {
     float: left;
-    width: 49%;
+    width: 50%;
 }
 
 .wait .dots {

@@ -36,23 +36,32 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             if (story[current].goto) {
                 if (story[current].delay) {
-                    setTimeout(next, story[current].delay);
+                    setTimeout(function () {
+                        wait(next);
+                    }, story[current].delay);
                 } else {
-                    next();
+                    wait(next);
                 }
             }
         }
     }
 
     function next() {
+        play(story[current].goto);
+    } 
+
+    function wait(callback, delay) {
+
+        delay = delay !== undefined ? parseInt(delay, 10) : 1500;
+
         div = document.createElement('div');
         div.innerHTML = '<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
         div.className = "wait";
         document.body.appendChild(div);
         setTimeout(function () {
             document.body.removeChild(div);
-            play(story[current].goto);
-        }, 1500 + (Math.random() * 1000));        
+            callback();
+        }, delay + (Math.random() * (delay * 0.5) ));        
     }
 
     function onChoose(e) {
@@ -62,7 +71,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         this.innerHTML = story[current].answers[ans.getAttribute('data-ans')].text;
         
-        play(gotoKey);
+        wait(function () {
+            play(gotoKey)
+        });
     }
 
     play('start');
