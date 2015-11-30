@@ -27,14 +27,20 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(div);
         if (story[key].type == 1) {
             div = document.createElement('div');
-            div.innerHTML = '<div class="ans" data-ans="a1">' + story[key].answers.a1.text + '</div><div class="ans" data-ans="a2">' + story[key].answers.a2.text + '</div>';
+            div.className += "question";
+            div.innerHTML = '<div class="ans" data-ans="a1">' + story[key].answers.a1.text + '</div><div class="ans" data-ans="a2">' + story[key].answers.a2.text + '</div><div class="clear"></div>';
             div.addEventListener('click', onChoose);
             document.body.appendChild(div);
         } else {
             if (story[key].goto) {
+                div = document.createElement('div');
+                div.innerHTML = '<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+                div.className = "wait";
+                document.body.appendChild(div);
                 setTimeout(function () {
+                    document.body.removeChild(div);
                     play(story[key].goto);
-                }, 1000);                
+                }, 1500 + (Math.random() * 1000));                
             }
         }
     }

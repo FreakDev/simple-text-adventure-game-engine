@@ -1,0 +1,45 @@
+div {
+    border: 1px solid black;
+    text-align: center;
+    min-height: 30px;    
+}
+
+.clear {
+    clear: both;   
+    min-height: 0px;
+}
+
+.question {
+    background-color: #ccc;
+}
+
+.question .ans {
+    float: left;
+    width: 49%;
+}
+
+.wait .dots {
+    -webkit-animation: dots 1.5s infinite;
+    border: none;
+    overflow: hidden;
+    width: 0px;
+    display: inline-block;
+    height: 15px;
+}
+
+.wait .dot {
+    border-radius: 50%;
+    background-color: #000;
+    margin: 5px;
+    margin-top: 10px;
+    width: 10px;
+    height: 10px;
+    display: block;
+    float: left;
+}
+
+@-webkit-keyframes dots {
+  33%  { width: 20px; }
+  66%  { width: 43px; }
+  100% { width: 63px; }
+}
